@@ -35,10 +35,6 @@ dependencies {
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 
-	// JavaMail API
-	implementation 'javax.mail:javax.mail-api:1.6.2'
-	// JavaMail Implementation
-	implementation 'com.sun.mail:javax.mail:1.6.2'
 }
 
 tasks.named('bootBuildImage') {
