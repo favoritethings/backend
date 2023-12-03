@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 
 @RestController
@@ -34,7 +35,7 @@ public class MemberController {
      */
     @Operation(summary = "회원 가입 요청", description = "회원 가입.", tags = { "Member Controller" })
     @PostMapping("/signup")
-    public ResponseDto<?> signup(@RequestBody MemberRequestDto memberRequestDto) {
+    public ResponseDto<?> signup(@Valid @RequestBody MemberRequestDto memberRequestDto) {
         return memberService.signup(memberRequestDto);
     }
 

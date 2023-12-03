@@ -21,6 +21,9 @@ public class Member {
     @Column(unique = true, nullable = false, name = "email")
     private String email;
 
+    @Column(unique = true, nullable = false, name = "phone")
+    private String phone;
+
     @Column(nullable = false)
     private String nickname;
 
@@ -31,9 +34,10 @@ public class Member {
     private AccountType account_type;
 
     @Builder
-    public Member(String email, String nickname, String password) {
+    public Member(String email, String nickname, String phone, String password) {
         this.email = email;
         this.nickname = nickname;
+        this.phone = phone;
         this.password = password;
         this.account_type = AccountType.ROLE_USER;
     }

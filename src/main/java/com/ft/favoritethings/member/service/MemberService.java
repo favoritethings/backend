@@ -12,6 +12,7 @@ import com.ft.favoritethings.member.dto.response.ResponseDto;
 import com.ft.favoritethings.member.entity.Member;
 import com.ft.favoritethings.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.Objects;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -44,13 +45,22 @@ public class MemberService {
     @Transactional
     public ResponseDto<?> signup(MemberRequestDto memberRequestDto) {
 
-        if (memberRepository.existsByEmail(memberRequestDto.getEmail()))
-            throw new RuntimeException("중복된 이메일입니다.");
+        if (memberRepository.existsByEmail(memberRequestDto.getEmail())){
+            log.info("중복된 이메일입니다");
+            return ResponseDto.fail(400,"중복된 이메일입니다.",memberRequestDto.getEmail()+"는 중복된 이메일입니다.");
+        } else if (!memberRequestDto.getPassword().equals(memberRequestDto.getPasswordConform())){
+            log.info("비밀번호가 일치하지 않습니다");
+            return ResponseDto.fail(400,"비밀번호가 일치하지 않습니다.","비밀번호가 일치하지 않습니다.");
+        } else if (memberRepository.existsByPhone(memberRequestDto.getPhone())) {
+            log.info("이미 가입된 번호입니다.");
+            return ResponseDto.fail(400,"이미 가입된 번호입니다.",memberRequestDto.getPhone()+"는 중복된 번호입니다.");
+        }
 
         new Member();
         Member member = Member.builder()
                 .email(memberRequestDto.getEmail())
                 .nickname(memberRequestDto.getNickname())
+                .phone(memberRequestDto.getPhone())
                 .password(passwordEncoder.encode(memberRequestDto.getPassword()))
                 .build();
 
