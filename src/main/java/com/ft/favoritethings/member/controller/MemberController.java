@@ -26,7 +26,7 @@ public class MemberController {
      */
     @Operation(summary = "이메일 중복 확인", description = "이메일 중복 확인.", tags = { "Member Controller" })
     @PostMapping("/checkDuplicate")
-    public ResponseDto<?> checkDuplicate(@RequestBody ValidatorEmailDto validatorEmailDto){
+    public ResponseDto<?> checkDuplicate(@Valid @RequestBody ValidatorEmailDto validatorEmailDto){
         return memberService.checkDuplicate(validatorEmailDto);
     }
 
