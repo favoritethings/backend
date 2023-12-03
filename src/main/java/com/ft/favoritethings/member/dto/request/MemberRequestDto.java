@@ -34,4 +34,9 @@ public class MemberRequestDto {
         return new UsernamePasswordAuthenticationToken(email, password);
     }
 
+    public boolean isPhoneValid() {
+        return this.phone.matches("^010-\\d{4}-\\d{4}$");
+    }
+
+
 }
