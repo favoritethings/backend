@@ -24,4 +24,4 @@ hs_err_pid*
 replay_pid*
 
 # Ignore application.properties
-application.properties
+src/main/resources/application.properties
