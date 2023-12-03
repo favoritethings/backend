@@ -15,6 +15,7 @@ public class MemberRequestDto {
 
     private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{6,12}$";
 
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "유효한 이메일 주소를 입력해주세요.")
     private String email;
 
     @Size(min = 2, max = 8, message = "닉네임은 2자 이상 8자 이하로 생성해주세요.")
