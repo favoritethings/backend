@@ -51,6 +51,9 @@ public class MemberService {
         } else if (!memberRequestDto.getPassword().equals(memberRequestDto.getPasswordConform())){
             log.info("비밀번호가 일치하지 않습니다");
             return ResponseDto.fail(400,"비밀번호가 일치하지 않습니다.","비밀번호가 일치하지 않습니다.");
+        } else if (!memberRequestDto.isPhoneValid()) {
+            log.info("잘못된 전화번호 형식입니다.");
+            return ResponseDto.fail(400, "잘못된 전화번호 형식입니다.", "전화번호는 010-0000-0000 형식으로 입력해주세요.");
         } else if (memberRepository.existsByPhone(memberRequestDto.getPhone())) {
             log.info("이미 가입된 번호입니다.");
             return ResponseDto.fail(400,"이미 가입된 번호입니다.",memberRequestDto.getPhone()+"는 중복된 번호입니다.");
