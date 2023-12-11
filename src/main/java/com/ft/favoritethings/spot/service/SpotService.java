@@ -1,5 +1,6 @@
 package com.ft.favoritethings.spot.service;
 
+import com.ft.favoritethings.member.entity.Member;
 import com.ft.favoritethings.spot.dto.request.SpotRequestDto;
 import com.ft.favoritethings.spot.dto.response.ResponseDto;
 import com.ft.favoritethings.spot.entity.Spot;
@@ -17,12 +18,13 @@ public class SpotService {
 
     public final SpotRepository spotRepository;
 
-    public ResponseDto<?> createSpot(SpotRequestDto spotRequestDto) {
+    public ResponseDto<?> createSpot(SpotRequestDto spotRequestDto, Member member) {
 
         new Spot();
         Spot spot = Spot.builder()
                 .title(spotRequestDto.getTitle())
                 .description(spotRequestDto.getDescription())
+                .member(member)
                 .build();
 
         spotRepository.save(spot);
