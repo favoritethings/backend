@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -38,8 +39,13 @@ public class SpotService {
     }
 
     public ResponseDto<?> showSpecificSpot(Long spotId) {
-        Spot spot = spotRepository.getSpotById(spotId);
-        return new ResponseDto<>(200, "Success", spot);
+        Optional<Spot> spotOptional = spotRepository.findById(spotId);
+
+        if (spotOptional.isPresent()) {
+            return ResponseDto.success(spotOptional);
+        } else {
+            return ResponseDto.fail(404, "Spot not found", "장소가 존재하지 않습니다.");
+        }
     }
 
     public ResponseDto<?> deleteSpot(Long spotId) {
