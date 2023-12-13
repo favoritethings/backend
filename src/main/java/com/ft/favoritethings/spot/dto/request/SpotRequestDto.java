@@ -9,7 +9,4 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SpotRequestDto {
     private Long id;
-    private String title;
-    private String description;
-    private String user_id;
 }

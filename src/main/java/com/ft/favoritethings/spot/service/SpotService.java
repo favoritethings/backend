@@ -3,7 +3,6 @@ package com.ft.favoritethings.spot.service;
 import com.ft.favoritethings.member.entity.AccountType;
 import com.ft.favoritethings.member.entity.Member;
 import com.ft.favoritethings.spot.dto.request.SpotCreateDto;
-import com.ft.favoritethings.spot.dto.request.SpotRequestDto;
 import com.ft.favoritethings.spot.dto.response.ResponseDto;
 import com.ft.favoritethings.spot.entity.Spot;
 import com.ft.favoritethings.spot.repository.SpotRepository;
