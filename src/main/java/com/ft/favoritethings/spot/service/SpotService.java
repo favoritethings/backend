@@ -36,7 +36,7 @@ public class SpotService {
 
     public ResponseDto<?> getAllSpots() {
 
-        List<Spot> spots = spotRepository.getAllBy();
+        List<Spot> spots = spotRepository.findAll();
         return new ResponseDto<>(200, "Success", spots);
     }
 
