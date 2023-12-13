@@ -1,6 +1,7 @@
 package com.ft.favoritethings.spot.controller;
 
 import com.ft.favoritethings.member.entity.Member;
+import com.ft.favoritethings.spot.dto.request.SpotCreateDto;
 import com.ft.favoritethings.spot.dto.request.SpotRequestDto;
 import com.ft.favoritethings.spot.dto.response.ResponseDto;
 import com.ft.favoritethings.spot.service.SpotService;
@@ -21,8 +22,8 @@ public class SpotController {
      */
     @Operation(summary = "새로운 장소 생성", description = "새로운 장소 생성.", tags = {"Spot Controller"})
     @PostMapping
-    public ResponseDto<?> createSpot(@RequestBody SpotRequestDto spotRequestDto, Member member){
-        return spotService.createSpot(spotRequestDto, member);
+    public ResponseDto<?> createSpot(@RequestBody SpotCreateDto spotCreateDto, Member member){
+        return spotService.createSpot(spotCreateDto, member);
     }
 
     /*
