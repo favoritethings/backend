@@ -51,8 +51,8 @@ public class SpotController {
      */
     @Operation(summary = "장소 삭제", description = "장소 삭제.", tags = {"Spot Controller"})
     @DeleteMapping("/spot")
-    public ResponseDto<?> deleteSpot(@RequestBody SpotRequestDto spotRequestDto){
+    public ResponseDto<?> deleteSpot(@RequestBody SpotRequestDto spotRequestDto, Member member){
         Long spotId = spotRequestDto.getId();
-        return spotService.deleteSpot(spotId);
+        return spotService.deleteSpot(spotId, member);
     }
 }
