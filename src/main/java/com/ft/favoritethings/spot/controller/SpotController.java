@@ -20,7 +20,7 @@ public class SpotController {
      * 장소 생성
      */
     @Operation(summary = "새로운 장소 생성", description = "새로운 장소 생성.", tags = {"Spot Controller"})
-    @PostMapping("/spot")
+    @PostMapping
     public ResponseDto<?> createSpot(@RequestBody SpotRequestDto spotRequestDto, Member member){
         return spotService.createSpot(spotRequestDto, member);
     }
@@ -29,7 +29,7 @@ public class SpotController {
      * 모든 장소 목록 조회
      */
     @Operation(summary = "모든 장소 목록 조회", description = "모든 장소 목록 조회.", tags = {"Spot Controller"})
-    @GetMapping("/spots")
+    @GetMapping("/all")
     public ResponseDto<?> getAllSpots(){
         return spotService.getAllSpots();
     }
@@ -39,7 +39,7 @@ public class SpotController {
      * 특정 장소 조회
      */
     @Operation(summary = "특정 장소 조회", description = "특정 장소 조회", tags = {"Spot Controller"})
-    @GetMapping("/spot")
+    @GetMapping("/{id}")
     public ResponseDto<?> showSpecificSpot(@RequestBody SpotRequestDto spotRequestDto){
         Long spotId = spotRequestDto.getId();
         return spotService.showSpecificSpot(spotId);
@@ -50,7 +50,7 @@ public class SpotController {
      * 장소 삭제
      */
     @Operation(summary = "장소 삭제", description = "장소 삭제.", tags = {"Spot Controller"})
-    @DeleteMapping("/spot")
+    @DeleteMapping
     public ResponseDto<?> deleteSpot(@RequestBody SpotRequestDto spotRequestDto, Member member){
         Long spotId = spotRequestDto.getId();
         return spotService.deleteSpot(spotId, member);
