@@ -22,8 +22,7 @@ public class Spot {
 
     private String description;
 
-    @ManyToOne // Many = Spot, Member =One 한명의 유저가 여러 장소를 생성할 수 있다.
-    @JoinColumn(name = "member_id")
+    @ManyToOne
     private Member member;
 
     @Builder
