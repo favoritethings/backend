@@ -62,9 +62,16 @@ public class MemberService {
         new Member();
         Member member = Member.builder()
                 .email(memberRequestDto.getEmail())
+                .name(memberRequestDto.getName())
                 .nickname(memberRequestDto.getNickname())
                 .phone(memberRequestDto.getPhone())
                 .password(passwordEncoder.encode(memberRequestDto.getPassword()))
+                .gender(memberRequestDto.getGender())
+                .profileImage(memberRequestDto.getProfileImage())
+                .provider(memberRequestDto.getProvider())
+                .age(memberRequestDto.getAge())
+                .coupleDate(memberRequestDto.getCoupleDate())
+                .couple(memberRequestDto.getCouple())
                 .build();
 
         memberRepository.save(member);

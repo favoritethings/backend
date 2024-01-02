@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
@@ -17,29 +19,24 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true, nullable = false, name = "email")
+    @Column(unique = true, nullable = false)
     private String email;
-
-    @Column(unique = true, nullable = false, name = "phone")
-    private String phone;
-
-    @Column(nullable = false)
     private String nickname;
-
+    @Column(unique = true, nullable = false)
+    private String phone;
+    @Column(nullable = false)
+    private String name;
+    private String provider;
+    @Column(nullable = false)
+    private String gender;
+    private String age;
     @Column(nullable = false)
     private String password;
-
+    private String profileImage;
+    private Date coupleDate;
+    private Boolean couple;
     @Enumerated(EnumType.STRING)
     private AccountType account_type;
 
-    @Builder
-    public Member(String email, String nickname, String phone, String password) {
-        this.email = email;
-        this.nickname = nickname;
-        this.phone = phone;
-        this.password = password;
-        this.account_type = AccountType.ROLE_USER;
-    }
 
 }
