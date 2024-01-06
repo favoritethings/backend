@@ -22,7 +22,6 @@ public class SpotService {
 
     public ResponseDto<?> createSpot(SpotCreateDto spotCreateDto, Member member) {
 
-        new Spot();
         Spot spot = Spot.builder()
                 .title(spotCreateDto.getTitle())
                 .subTitle(spotCreateDto.getSubTitle())
@@ -30,7 +29,7 @@ public class SpotService {
                 .address(spotCreateDto.getAddress())
                 .openingHour(spotCreateDto.getOpeningHour())
                 .isParking(spotCreateDto.getIsParking())
-                .featuredImage(spotCreateDto.getFeaturedImage())
+                .featured_image(spotCreateDto.getFeaturedImage())
                 .member(member)
                 .build();
 

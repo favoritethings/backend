@@ -31,7 +31,7 @@ public class SpotController {
     }
 
     /*
-     * 모든 장소 목록 조회
+     * 모든 장소 조회
      */
     @Operation(summary = "모든 장소 목록 조회", description = "모든 장소 목록 조회.", tags = {"Spot Controller"})
     @GetMapping("/all")

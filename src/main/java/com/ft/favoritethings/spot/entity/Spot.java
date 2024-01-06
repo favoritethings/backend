@@ -31,20 +31,20 @@ public class Spot {
 
     private Boolean isParking;
 
-    private String featuredImage;
+    private String featured_image;
 
     @ManyToOne
     private Member member;
 
     @Builder
-    public Spot(String title, String subTitle, String description, String address,String openingHour,Boolean isParking,String featuredImage,Member member) {
+    public Spot(String title, String subTitle, String description, String address,String openingHour,Boolean isParking,String featured_image,Member member) {
         this.title = title;
         this.subTitle = subTitle;
         this.description = description;
         this.address = address;
         this.openingHour = openingHour;
         this.isParking = isParking;
-        this.featuredImage = featuredImage;
+        this.featured_image = featured_image;
         this.member = member;
     }
 
