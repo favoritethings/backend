@@ -20,15 +20,31 @@ public class Spot {
     @Column(nullable = false)
     private String title;
 
+    private String subTitle;
+
+    @Column(length = 1000)
     private String description;
+
+    private String address;
+
+    private String openingHour;
+
+    private Boolean isParking;
+
+    private String featuredImage;
 
     @ManyToOne
     private Member member;
 
     @Builder
-    public Spot(String title, String description, Member member) {
+    public Spot(String title, String subTitle, String description, String address,String openingHour,Boolean isParking,String featuredImage,Member member) {
         this.title = title;
+        this.subTitle = subTitle;
         this.description = description;
+        this.address = address;
+        this.openingHour = openingHour;
+        this.isParking = isParking;
+        this.featuredImage = featuredImage;
         this.member = member;
     }
 

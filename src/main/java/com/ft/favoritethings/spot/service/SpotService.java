@@ -25,7 +25,12 @@ public class SpotService {
         new Spot();
         Spot spot = Spot.builder()
                 .title(spotCreateDto.getTitle())
+                .subTitle(spotCreateDto.getSubTitle())
                 .description(spotCreateDto.getDescription())
+                .address(spotCreateDto.getAddress())
+                .openingHour(spotCreateDto.getOpeningHour())
+                .isParking(spotCreateDto.getIsParking())
+                .featuredImage(spotCreateDto.getFeaturedImage())
                 .member(member)
                 .build();
 

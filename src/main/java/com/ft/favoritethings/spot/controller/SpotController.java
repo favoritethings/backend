@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/spot")
@@ -24,7 +26,7 @@ public class SpotController {
      */
     @Operation(summary = "새로운 장소 생성", description = "새로운 장소 생성.", tags = {"Spot Controller"})
     @PostMapping
-    public ResponseDto<?> createSpot(@RequestBody  SpotCreateDto spotCreateDto, @AuthenticationPrincipal Member member){
+    public ResponseDto<?> createSpot(@Valid @RequestBody  SpotCreateDto spotCreateDto, @AuthenticationPrincipal Member member){
         return spotService.createSpot(spotCreateDto, member);
     }
 
