@@ -1,4 +1,4 @@
-package com.ft.favoritethings.curation.dto.response;
+package com.ft.favoritethings.common.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.ft.favoritethings.curation.service;
 
 import com.ft.favoritethings.curation.dto.request.CurationCreateDto;
-import com.ft.favoritethings.curation.dto.response.ResponseDto;
+import com.ft.favoritethings.common.dto.response.ResponseDto;
 import com.ft.favoritethings.curation.entity.Curation;
 import com.ft.favoritethings.curation.repository.CurationRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,9 @@ public class CurationService {
     public ResponseDto<?> createCuration(CurationCreateDto curationCreateDto) {
 
         Curation curation = Curation.builder()
-                .orderNo(curationCreateDto.getOrderNo())
+                .title(curationCreateDto.getTitle())
                 .isShow(curationCreateDto.getIsShow())
+                .spotList(curationCreateDto.getSpotList())
                 .build();
 
         curationRepository.save(curation);
@@ -32,7 +33,6 @@ public class CurationService {
     public ResponseDto<?> getAllCurations() {
         List<Curation> curations = curationRepository.findAll();
 
-//        return new ResponseDto<>(200, "Success", curations);
         return ResponseDto.success(curations);
     }
 
@@ -61,7 +61,7 @@ public class CurationService {
     }
 
     public ResponseDto<?> getHomeCurations() {
-        List<Curation> curations = curationRepository.findCurationByIsShowOrderByOrderNo(true);
+        List<Curation> curations = curationRepository.findCurationByIsShow(true);
 
         return ResponseDto.success(curations);
     }

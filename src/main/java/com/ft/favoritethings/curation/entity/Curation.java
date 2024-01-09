@@ -1,5 +1,6 @@
 package com.ft.favoritethings.curation.entity;
 
+import com.ft.favoritethings.spot.entity.Spot;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,16 +19,17 @@ public class Curation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Number orderNo;
+    @OneToMany(mappedBy = "curation")
+    private List<Spot> spotList;
+
+    private String title;
 
     private Boolean isShow;
 
-    @OneToMany(mappedBy = "curation")
-    private List<CurationSection> curationSections;
-
     @Builder
-    public Curation(Number orderNo, Boolean isShow) {
-        this.orderNo = orderNo;
+    public Curation(String title, Boolean isShow, List<Spot> spotList) {
+        this.title = title;
         this.isShow = isShow;
+        this.spotList = spotList;
     }
 }

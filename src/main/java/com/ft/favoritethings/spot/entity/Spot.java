@@ -1,14 +1,13 @@
 package com.ft.favoritethings.spot.entity;
 
-import com.ft.favoritethings.member.entity.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ft.favoritethings.curation.entity.Curation;
+import lombok.*;
 
 import javax.persistence.*;
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Spot {
@@ -16,6 +15,11 @@ public class Spot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CURATION_ID")
+    @JsonIgnore
+    private Curation curation;
 
     @Column(nullable = false)
     private String title;
@@ -33,11 +37,11 @@ public class Spot {
 
     private String featured_image;
 
-    @ManyToOne
-    private Member member;
+    private String curation_image;
 
     @Builder
-    public Spot(String title, String subTitle, String description, String address,String openingHour,Boolean isParking,String featured_image,Member member) {
+    public Spot(Curation curation, String title, String subTitle, String description, String address,String openingHour, Boolean isParking, String featured_image) {
+        this.curation = curation;
         this.title = title;
         this.subTitle = subTitle;
         this.description = description;
@@ -45,7 +49,6 @@ public class Spot {
         this.openingHour = openingHour;
         this.isParking = isParking;
         this.featured_image = featured_image;
-        this.member = member;
     }
 
 }
