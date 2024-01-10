@@ -1,5 +1,6 @@
 package com.ft.favoritethings.member.entity;
 
+import com.ft.favoritethings.spot.entity.Spot;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -37,6 +39,8 @@ public class Member {
     private Boolean couple;
     @Enumerated(EnumType.STRING)
     private AccountType account_type;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Spot> spotList;
 
 
 }
