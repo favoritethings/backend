@@ -9,5 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SpotCreateDto {
     private String title;
+    private String subTitle;
     private String description;
+    private String address;
+    private String openingHour;
+    private Boolean isParking;
+    private String featuredImage;
 }
