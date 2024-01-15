@@ -44,8 +44,8 @@ public class SpotController {
      */
     @Operation(summary = "특정 장소 조회", description = "특정 장소 조회.", tags = {"Spot Controller"})
     @GetMapping
-    public ResponseDto<?> showSpecificSpot(@RequestParam Long id){
-        return spotService.showSpecificSpot(id);
+    public ResponseDto<?> showSpot(@RequestParam Long id){
+        return spotService.showSpot(id);
     }
 
 
@@ -58,4 +58,12 @@ public class SpotController {
         return spotService.deleteSpot(id, member);
     }
 
+    /*
+     * 태그 연결
+     */
+    @Operation(summary = "태그 연결", description = "태그 연결.", tags = {"Spot Controller"})
+    @PostMapping("/tag")
+    public ResponseDto<?> postTag(@RequestParam Long spotId, @RequestParam Long tagId) {
+        return spotService.postTag(spotId, tagId);
+    }
 }

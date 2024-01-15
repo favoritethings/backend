@@ -8,6 +8,8 @@ import com.ft.favoritethings.spot.dto.request.SpotCreateDto;
 import com.ft.favoritethings.common.dto.response.ResponseDto;
 import com.ft.favoritethings.spot.entity.Spot;
 import com.ft.favoritethings.spot.repository.SpotRepository;
+import com.ft.favoritethings.tag.entity.Tag;
+import com.ft.favoritethings.tag.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class SpotService {
 
     public final SpotRepository spotRepository;
     public final CurationRepository curationRepository;
+    public final TagRepository tagRepository;
 
     public ResponseDto<?> createSpot(SpotCreateDto spotCreateDto) {
 
@@ -46,7 +49,7 @@ public class SpotService {
         return new ResponseDto<>(200, "Success", spots);
     }
 
-    public ResponseDto<?> showSpecificSpot(Long spotId) {
+    public ResponseDto<?> showSpot(Long spotId) {
 
         Optional<Spot> spotOptional = spotRepository.findById(spotId);
 
@@ -99,5 +102,30 @@ public class SpotService {
         }
 
         return ResponseDto.success(curationOptional.get());
+    }
+
+    public ResponseDto<?> postTag(Long spotId, Long tagId) {
+
+        Optional<Spot> spotOptional = spotRepository.findById(spotId);
+
+        if(spotOptional.isEmpty()) {
+            log.info("장소가 존재하지 않습니다.");
+            return ResponseDto.fail(404, "Spot not found", "장소가 존재하지 않습니다.");
+        }
+
+        Optional<Tag> tagOptional = tagRepository.findById(tagId);
+
+        if(tagOptional.isEmpty()) {
+            log.info("태그가 존재하지 않습니다.");
+            return ResponseDto.fail(404, "Tag not found", "태그가 존재하지 않습니다.");
+        }
+
+        Spot spot = spotOptional.get();
+        Tag tag = tagOptional.get();
+
+        spot.setTagList(tag);
+        spotRepository.save(spot);
+
+        return ResponseDto.success(spot);
     }
 }
