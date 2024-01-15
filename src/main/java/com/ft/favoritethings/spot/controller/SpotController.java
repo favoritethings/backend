@@ -66,4 +66,13 @@ public class SpotController {
     public ResponseDto<?> postTag(@RequestParam Long spotId, @RequestParam Long tagId) {
         return spotService.postTag(spotId, tagId);
     }
+
+    /*
+     * 태그 삭제
+     */
+    @Operation(summary = "태그 삭제", description = "태그 삭제.", tags = {"Spot Controller"})
+    @DeleteMapping("/tag")
+    public ResponseDto<?> deleteTag(@RequestParam Long spotId, @RequestParam Long tagId) {
+        return spotService.deleteTag(spotId, tagId);
+    }
 }
