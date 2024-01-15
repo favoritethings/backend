@@ -3,13 +3,9 @@ package com.ft.favoritethings.curation.controller;
 import com.ft.favoritethings.curation.dto.request.CurationCreateDto;
 import com.ft.favoritethings.common.dto.response.ResponseDto;
 import com.ft.favoritethings.curation.service.CurationService;
-import com.ft.favoritethings.spot.entity.Spot;
-import com.ft.favoritethings.spot.service.SpotService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,7 +13,6 @@ import java.util.List;
 public class CurationController {
 
     private final CurationService curationService;
-    private final SpotService spotService;
 
     /*
     * 큐레이션 생성
@@ -69,8 +64,17 @@ public class CurationController {
     */
     @Operation(summary = "큐레이션 컨텐츠 추가", description = "큐레이션에 컨텐츠를 추가합니다.", tags = {"Curation Controller"})
     @PostMapping("/spot")
-    public ResponseDto<?> postCuratioinSpot(@RequestParam Long curationId, @RequestBody List<Spot> spotList) {
-        return spotService.postCurationSpot(spotList, curationId);
+    public ResponseDto<?> postCuratioinSpot(@RequestParam Long curationId, @RequestParam Long spotId) {
+        return curationService.postCurationSpot(curationId, spotId);
+    }
+
+    /*
+     * 큐레이션에 장소 삭제
+     */
+    @Operation(summary = "큐레이션 컨텐츠 삭제", description = "큐레이션에 컨텐츠를 삭제합니다.", tags = {"Curation Controller"})
+    @DeleteMapping("/spot")
+    public ResponseDto<?> deleteCurationSpot(@RequestParam Long curationId, @RequestParam Long spotId) {
+        return curationService.deleteCurationSpot(curationId, spotId);
     }
 
 }

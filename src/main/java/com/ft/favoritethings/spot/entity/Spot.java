@@ -25,10 +25,9 @@ public class Spot {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CURATION_ID")
+    @ManyToMany(mappedBy = "spotList")
     @JsonIgnore
-    private Curation curation;
+    private List<Curation> curationList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "SPOT_TAG",
@@ -64,9 +63,9 @@ public class Spot {
     }
 
     @Builder
-    public Spot(Member member, Curation curation, List<Tag> tagList, String title, String subTitle, String description, String address, String openingHour, Boolean isParking, String featured_image) {
+    public Spot(Member member, List<Curation> curationList, List<Tag> tagList, String title, String subTitle, String description, String address, String openingHour, Boolean isParking, String featured_image) {
         this.member = member;
-        this.curation = curation;
+        this.curationList = curationList;
         this.tagList = tagList;
         this.title = title;
         this.subTitle = subTitle;

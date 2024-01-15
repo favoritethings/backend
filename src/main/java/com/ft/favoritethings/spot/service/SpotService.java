@@ -1,6 +1,5 @@
 package com.ft.favoritethings.spot.service;
 
-import com.ft.favoritethings.curation.entity.Curation;
 import com.ft.favoritethings.curation.repository.CurationRepository;
 import com.ft.favoritethings.member.entity.AccountType;
 import com.ft.favoritethings.member.entity.Member;
@@ -75,33 +74,6 @@ public class SpotService {
 
         spotRepository.deleteById(spotId);
         return new ResponseDto<>(200, "Success", "장소 삭제");
-    }
-
-    public ResponseDto<?> postCurationSpot(List<Spot> spotList, Long curationId) {
-
-        Optional<Curation> curationOptional = curationRepository.findById(curationId);
-
-        if(curationOptional.isEmpty()) {
-            log.info("큐레이션이 존재하지 않습니다.");
-            return ResponseDto.fail(404, "Curation not found", "큐레이션이 존재하지 않습니다.");
-        }
-
-        for (Spot spot : spotList) {
-            Optional<Spot> spotOptional = spotRepository.findById(spot.getId());
-
-            if(spotOptional.isEmpty()) {
-                log.info("장소가 존재하지 않습니다.");
-                return ResponseDto.fail(404, "Spot not found", "장소가 존재하지 않습니다.");
-            }
-
-            Spot existingSpot = spotOptional.get();
-            Curation curation = curationOptional.get();
-            existingSpot.setCuration(curation);
-
-            spotRepository.save(existingSpot);
-        }
-
-        return ResponseDto.success(curationOptional.get());
     }
 
     public ResponseDto<?> postTag(Long spotId, Long tagId) {
