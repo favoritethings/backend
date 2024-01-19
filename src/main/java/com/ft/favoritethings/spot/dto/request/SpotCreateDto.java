@@ -15,4 +15,5 @@ public class SpotCreateDto {
     private String openingHour;
     private Boolean isParking;
     private String featuredImage;
+    private String curationImage;
 }

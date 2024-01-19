@@ -63,7 +63,7 @@ public class Spot {
     }
 
     @Builder
-    public Spot(Member member, List<Curation> curationList, List<Tag> tagList, String title, String subTitle, String description, String address, String openingHour, Boolean isParking, String featured_image) {
+    public Spot(Member member, List<Curation> curationList, List<Tag> tagList, String title, String subTitle, String description, String address, String openingHour, Boolean isParking, String featured_image, String curation_image) {
         this.member = member;
         this.curationList = curationList;
         this.tagList = tagList;
@@ -74,5 +74,6 @@ public class Spot {
         this.openingHour = openingHour;
         this.isParking = isParking;
         this.featured_image = featured_image;
+        this.curation_image = curation_image;
     }
 }

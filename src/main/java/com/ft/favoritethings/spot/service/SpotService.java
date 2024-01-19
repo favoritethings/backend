@@ -35,6 +35,7 @@ public class SpotService {
                 .openingHour(spotCreateDto.getOpeningHour())
                 .isParking(spotCreateDto.getIsParking())
                 .featured_image(spotCreateDto.getFeaturedImage())
+                .curation_image(spotCreateDto.getCurationImage())
                 .build();
 
         spotRepository.save(spot);
