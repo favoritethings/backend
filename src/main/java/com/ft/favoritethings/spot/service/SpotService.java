@@ -63,15 +63,15 @@ public class SpotService {
 
     public ResponseDto<?> deleteSpot(Long spotId, Member member) {
 
-        if(member == null) {
-            log.info("유저 정보가 없습니다.");
-            return ResponseDto.fail(404, "Member is Null",  "유저 정보를 확인할 수 없습니다.");
-        }
-
-        if (!AccountType.ROLE_ADMIN.equals(member.getAccount_type())) {
-            log.info("삭제 권한이 없는 유저입니다.");
-            return ResponseDto.fail(404, "Member is not admin",  "삭제 권한이 없는 유저입니다.");
-        }
+//        if(member == null) {
+//            log.info("유저 정보가 없습니다.");
+//            return ResponseDto.fail(404, "Member is Null",  "유저 정보를 확인할 수 없습니다.");
+//        }
+//
+//        if (!AccountType.ROLE_ADMIN.equals(member.getAccount_type())) {
+//            log.info("삭제 권한이 없는 유저입니다.");
+//            return ResponseDto.fail(404, "Member is not admin",  "삭제 권한이 없는 유저입니다.");
+//        }
 
         spotRepository.deleteById(spotId);
         return new ResponseDto<>(200, "Success", "장소 삭제");
